@@ -1,0 +1,65 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(method='POST' action='./search')
+
+    div.form-group
+      label(for='siteId') Sitios
+        select#siteId(name='sitesDropDownInput' class='form-control' onload="jUtils.loadPaymentMethods(this)" onchange="jUtils.loadPaymentMethods(this)")
+          each site in sites
+            option(value=site.id)=site.name
+
+    div.form-group
+      label(for='paymentMethodId') Métodos de pago:
+      select#paymentMethodId(class='form-control' name='paymentMethodsInput' multiple, required)
+        each payMethod in paymentMethodsList
+          if payMethod.name = "N/A"
+            option(value=payMethod.id, disabled)=payMethod.name
+          else
+            option(value=payMethod.id)=payMethod.name
+
+
+
+    div.form-group
+      label() Cerca de:
+      div.form-row
+        div.col
+          label(for='latitudId') Latitud:
+            input#latitudId.form-control(class='form-control' type='text', value='-31.337067' name='latitudInput',
+              required)
+        div.col
+          label(for='longitudId') Longitud:
+            input#longitudId.form-control(class='form-control' type='text', value='-64.205474' name='longitudInput',
+              required)
+        div.col
+          label(for='radioId') Radio:
+            input#radioId.form-control(class='form-control' type='text', value='10000' name='radioInput',
+              required)
+
+    div.form-group
+      label(for='limitId') Limite de resultados:
+        input#limitId.form-control(class='form-control' type='text', value='50' name='limitInput')
+
+    div.form-group
+      label(for='offsetId') Offset de resultados:
+        input#offsetId.form-control(class='form-control' type='text', value='0' name='offsetInput')
+
+    div.form-group
+      label() Filtrado
+      div.form-row
+        div.col
+          label() Filtrar por:
+            select#orderId(class='form-control' name='filterByInput')
+              option(value="address_line")="address_line"
+              option(value="agency_code")="agency_code"
+              option(value="distance")="distance"
+          label() Orden:
+            select#criterioId(class='form-control' name='sortByInput')
+              option(value="asc")="ascendente"
+              option(value="desc")="descendente"
+
+
+    button.btn.btn-primary(type='submit') Sign up

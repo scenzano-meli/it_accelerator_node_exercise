@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    //meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title= title
+    script(src='/javascripts/jUtils.js')
+    script(src='/bootstrapjs/jquery.min.js')
+    script(src='/bootstrapjs/bootstrap.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bootstrapcss/bootstrap.css')
+  div.container
+    ul(class="nav nav-tabs")
+      li.nav-item
+        a(class="nav-link active" href="/") Search Agency Form
+      li.nav-item
+        a(class="nav-link" href="/recommended_agencies") Recommended Agencies List
+    body
+      block content

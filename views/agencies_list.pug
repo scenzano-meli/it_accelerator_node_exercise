@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    h1= title
+    p #{title}
+
+    table.table(style='width:100%', border='1')
+        tr
+            th Agency Code
+            th Description
+            th Payment Method
+            th Distance
+            th Address
+            th City
+            th Country
+            th Like
+            th Unlike
+        each agency in agenciesList
+            tr
+                td=agency.agency_code
+                td=agency.description
+                td=agency.payment_method_id
+                td=agency.distance
+                td=agency.address.address_line
+                td=agency.address.city
+                td=agency.address.country
+                td
+                    a(class='button' href='#' onclick="jUtils.saveRecommendedAgency("+ agency.agency_code + ")") Like
+                td
+                    a(class='button' href='#' onclick="jUtils.deleteRecommendedAgency("+ agency.agency_code + ")") Unlike
